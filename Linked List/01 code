@@ -1,0 +1,127 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class LinkedListBasics {
+
+    // Display Linked List
+    public static void display(Node head) {
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+
+        System.out.println("NULL");
+    }
+
+    // Count Nodes
+    public static int countNodes(Node head) {
+        int count = 0;
+        Node temp = head;
+
+        while (temp != null) {
+            count++;
+            temp = temp.next;
+        }
+
+        return count;
+    }
+
+    // Sum of Nodes
+    public static int sumNodes(Node head) {
+        int sum = 0;
+        Node temp = head;
+
+        while (temp != null) {
+            sum += temp.data;
+            temp = temp.next;
+        }
+
+        return sum;
+    }
+
+    // Find Maximum
+    public static int findMax(Node head) {
+        int max = head.data;
+        Node temp = head;
+
+        while (temp != null) {
+            if (temp.data > max) {
+                max = temp.data;
+            }
+
+            temp = temp.next;
+        }
+
+        return max;
+    }
+
+    // Find Minimum
+    public static int findMin(Node head) {
+        int min = head.data;
+        Node temp = head;
+
+        while (temp != null) {
+            if (temp.data < min) {
+                min = temp.data;
+            }
+
+            temp = temp.next;
+        }
+
+        return min;
+    }
+
+    // Search Element
+    public static boolean search(Node head, int target) {
+        Node temp = head;
+
+        while (temp != null) {
+            if (temp.data == target) {
+                return true;
+            }
+
+            temp = temp.next;
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+
+        // Creating Nodes
+        Node first = new Node(10);
+        Node second = new Node(20);
+        Node third = new Node(30);
+        Node fourth = new Node(40);
+        Node fifth = new Node(50);
+
+        // Connecting Nodes
+        first.next = second;
+        second.next = third;
+        third.next = fourth;
+        fourth.next = fifth;
+
+        // Head Node
+        Node head = first;
+
+        System.out.println("Linked List:");
+        display(head);
+
+        System.out.println("Total Nodes : " + countNodes(head));
+        System.out.println("Sum         : " + sumNodes(head));
+        System.out.println("Maximum     : " + findMax(head));
+        System.out.println("Minimum     : " + findMin(head));
+
+        System.out.println("Search 30   : " + search(head, 30));
+        System.out.println("Search 100  : " + search(head, 100));
+    }
+}
