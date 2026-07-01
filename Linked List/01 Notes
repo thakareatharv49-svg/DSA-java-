@@ -1,0 +1,155 @@
+# Linked List
+
+## Definition
+
+A Linked List is a linear data structure consisting of nodes, where each node stores data and a reference to the next node. Unlike arrays, linked list elements are stored in non-contiguous memory locations.
+
+---
+
+## Node Structure
+
+Each node contains:
+
+- Data
+- Reference (Next Pointer)
+
+```
++--------+--------+
+| Data   | Next   |
++--------+--------+
+```
+
+Example
+
+```
+Head
+ |
+ ▼
+10 → 20 → 30 → NULL
+```
+
+---
+
+## Components
+
+### Head
+- Reference to the first node.
+- Starting point for traversal.
+
+### Node
+- Basic unit of the linked list.
+- Stores data and next node reference.
+
+### Tail
+- Last node of the linked list.
+- Points to `NULL`.
+
+---
+
+## Memory Representation
+
+```
+Address    Data    Next
+
+100        10      250
+250        20      500
+500        30      NULL
+```
+
+Nodes are stored at different memory locations and connected using references.
+
+---
+
+## Characteristics
+
+- Dynamic size
+- Non-contiguous memory allocation
+- Sequential access
+- Efficient insertion and deletion
+- Extra memory required for references
+
+---
+
+## Advantages
+
+- Dynamic memory allocation
+- Efficient insertion and deletion
+- No shifting of elements
+- Memory utilization is flexible
+
+---
+
+## Disadvantages
+
+- No direct indexing
+- Sequential traversal
+- Additional memory for references
+- Poor cache locality compared to arrays
+
+---
+
+## Applications
+
+- Music Playlist
+- Browser History
+- Undo / Redo
+- Image Viewer
+- Graph Adjacency List
+- Hash Table Chaining
+
+---
+
+## Time Complexity
+
+| Operation | Complexity |
+|-----------|------------|
+| Access | O(n) |
+| Search | O(n) |
+| Traversal | O(n) |
+| Insert at Beginning | O(1) |
+| Insert at End | O(n) |
+| Delete at Beginning | O(1) |
+| Delete at End | O(n) |
+
+> Insert at End becomes **O(1)** if a tail pointer is maintained.
+
+---
+
+## Space Complexity
+
+- Overall: **O(n)**
+- Per Node: **O(1)**
+
+---
+
+## Array vs Linked List
+
+| Feature | Array | Linked List |
+|---------|-------|-------------|
+| Memory | Contiguous | Non-contiguous |
+| Size | Fixed | Dynamic |
+| Random Access | O(1) | O(n) |
+| Insertion | O(n) | O(1) after traversal |
+| Deletion | O(n) | O(1) after traversal |
+| Extra Memory | No | Yes |
+
+---
+
+## Key Points
+
+- Nodes are connected using references.
+- The first node is called the Head.
+- The last node points to NULL.
+- Linked Lists support dynamic memory allocation.
+- Searching requires sequential traversal.
+
+---
+
+## Interview Questions
+
+1. What is a Linked List?
+2. Why is searching O(n)?
+3. Why is insertion at the beginning O(1)?
+4. Explain the difference between arrays and linked lists.
+5. Why can't a linked list provide random access?
+6. When should you use a linked list instead of an array?
