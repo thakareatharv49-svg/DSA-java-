@@ -1,0 +1,115 @@
+# Day 02 - Insert at Beginning (Singly Linked List)
+
+## Definition
+
+Insertion at the beginning means adding a new node before the current first node of the linked list.
+
+Example:
+
+Before:
+
+10 → 20 → 30 → NULL
+
+After inserting 5:
+
+5 → 10 → 20 → 30 → NULL
+
+---
+
+## Algorithm
+
+1. Create a new node.
+2. Set `newNode.next = head`.
+3. Update `head = newNode`.
+4. Return the updated head.
+
+---
+
+## Syntax
+
+```java
+Node newNode = new Node(data);
+newNode.next = head;
+head = newNode;
+return head;
+```
+
+---
+
+## Dry Run
+
+Initial List:
+
+Head
+ |
+ ▼
+10 → 20 → 30 → NULL
+
+Create New Node:
+
+5
+
+Connect:
+
+5 → 10 → 20 → 30 → NULL
+
+Update Head:
+
+Head
+ |
+ ▼
+5 → 10 → 20 → 30 → NULL
+
+---
+
+## Time Complexity
+
+| Operation | Complexity |
+|-----------|------------|
+| Insert at Beginning | O(1) |
+
+---
+
+## Space Complexity
+
+| Operation | Complexity |
+|-----------|------------|
+| Extra Space | O(1) |
+
+---
+
+## Key Points
+
+- A linked list is modified by changing references.
+- The new node becomes the new head.
+- The old head becomes the second node.
+- No traversal is required.
+- Always return the updated head.
+
+---
+
+## Common Mistake
+
+Wrong:
+
+```java
+head = newNode;
+newNode.next = head;
+```
+
+Correct:
+
+```java
+newNode.next = head;
+head = newNode;
+```
+
+---
+
+## Interview Questions
+
+1. Why is insertion at the beginning O(1)?
+2. Why do we return `head`?
+3. What happens if the linked list is empty?
+4. Why must `newNode.next = head` come before `head = newNode`?
+5. What happens if we don't assign the returned head in `main()`?
