@@ -1,0 +1,144 @@
+# Day 03 - Insert at End (Singly Linked List)
+
+## Definition
+
+Insertion at the end means adding a new node after the last node of the linked list.
+
+Example:
+
+Before:
+
+10 -> 20 -> 30 -> NULL
+
+After inserting 40:
+
+10 -> 20 -> 30 -> 40 -> NULL
+
+---
+
+## Algorithm
+
+1. Create a new node.
+2. If the linked list is empty, return the new node as the head.
+3. Create a temporary pointer `temp` and initialize it with `head`.
+4. Traverse until the last node using `while (temp.next != null)`.
+5. Connect the last node to the new node using `temp.next = newNode`.
+6. Return `head`.
+
+---
+
+## Syntax
+
+```java
+Node newNode = new Node(data);
+
+if (head == null) {
+    return newNode;
+}
+
+Node temp = head;
+
+while (temp.next != null) {
+    temp = temp.next;
+}
+
+temp.next = newNode;
+
+return head;
+```
+
+---
+
+## Dry Run
+
+Initial List:
+
+Head
+ |
+ ▼
+10 -> 20 -> 30 -> NULL
+
+Create New Node:
+
+40 -> NULL
+
+Traverse:
+
+10
+ ↓
+20
+ ↓
+30
+
+Attach:
+
+10 -> 20 -> 30 -> 40 -> NULL
+
+---
+
+## Time Complexity
+
+| Operation | Complexity |
+|-----------|------------|
+| Insert at End | O(n) |
+
+Reason:
+
+Traversal is required to reach the last node.
+
+---
+
+## Space Complexity
+
+| Operation | Complexity |
+|-----------|------------|
+| Extra Space | O(1) |
+
+---
+
+## Key Points
+
+- Head does not change when inserting into a non-empty list.
+- Traversal is required.
+- Always stop at the last node (`temp.next == null`).
+- Use a temporary pointer (`temp`) instead of moving `head`.
+- If the list is empty, the new node becomes the head.
+
+---
+
+## Common Mistakes
+
+### Wrong
+
+```java
+while (temp != null) {
+    temp = temp.next;
+}
+temp.next = newNode;
+```
+
+Reason:
+
+`temp` becomes `null`, causing a `NullPointerException`.
+
+---
+
+### Correct
+
+```java
+while (temp.next != null) {
+    temp = temp.next;
+}
+
+temp.next = newNode;
+```
+
+---
+
+## Interview Questions
+
+1. Why is insertion at the end O(n)?
+2. Why do we use `temp` instead of `head`?
+3. Why do we stop at `temp.next == null`?
+4. What happens if the linked list is empty?
+5. Why doesn't the head change during insertion at the end?
