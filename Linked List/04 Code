@@ -1,0 +1,88 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class Main {
+
+    // Display Linked List
+    public static void display(Node head) {
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+
+        System.out.println("NULL");
+    }
+
+    // Insert at Position (1-based indexing)
+    public static Node insertAtPosition(Node head, int data, int position) {
+
+        // Create new node
+        Node newNode = new Node(data);
+
+        // Insert at beginning
+        if (position == 1) {
+            newNode.next = head;
+            return newNode;
+        }
+
+        // Traverse to (position - 1)
+        Node temp = head;
+
+        for (int i = 1; i < position - 1; i++) {
+            temp = temp.next;
+        }
+
+        // Connect the new node
+        newNode.next = temp.next;
+        temp.next = newNode;
+
+        return head;
+    }
+
+    public static void main(String[] args) {
+
+        // Create Linked List
+        Node first = new Node(10);
+        Node second = new Node(20);
+        Node third = new Node(30);
+        Node fourth = new Node(40);
+
+        // Connect Nodes
+        first.next = second;
+        second.next = third;
+        third.next = fourth;
+
+        // Head
+        Node head = first;
+
+        System.out.println("Original Linked List:");
+        display(head);
+
+        // Insert 25 at Position 3
+        head = insertAtPosition(head, 25, 3);
+
+        System.out.println("\nAfter Inserting 25 at Position 3:");
+        display(head);
+
+        // Insert 5 at Position 1
+        head = insertAtPosition(head, 5, 1);
+
+        System.out.println("\nAfter Inserting 5 at Position 1:");
+        display(head);
+
+        // Insert 35 at Position 6
+        head = insertAtPosition(head, 35, 6);
+
+        System.out.println("\nAfter Inserting 35 at Position 6:");
+        display(head);
+    }
+}
