@@ -1,0 +1,167 @@
+# Day 04 - Insert at a Specific Position (Singly Linked List)
+
+## Definition
+
+Insertion at a specific position means adding a new node at a given position in the linked list without losing the existing nodes.
+
+Example:
+
+Before:
+
+10 -> 20 -> 30 -> 40 -> NULL
+
+Insert 25 at Position 3
+
+After:
+
+10 -> 20 -> 25 -> 30 -> 40 -> NULL
+
+---
+
+## Algorithm
+
+1. Create a new node.
+2. If the position is 1, insert at the beginning and return the new head.
+3. Create a temporary pointer (`temp`) starting from `head`.
+4. Traverse until the node just before the desired position (`position - 1`).
+5. Connect the new node to the next node:
+   ```java
+   newNode.next = temp.next;
+   ```
+6. Connect the previous node to the new node:
+   ```java
+   temp.next = newNode;
+   ```
+7. Return the head.
+
+---
+
+## Syntax
+
+```java
+Node newNode = new Node(data);
+
+if (position == 1) {
+    newNode.next = head;
+    return newNode;
+}
+
+Node temp = head;
+
+for (int i = 1; i < position - 1; i++) {
+    temp = temp.next;
+}
+
+newNode.next = temp.next;
+temp.next = newNode;
+
+return head;
+```
+
+---
+
+## Dry Run
+
+Initial List:
+
+10 -> 20 -> 30 -> 40 -> NULL
+
+Insert:
+
+25 at Position 3
+
+Step 1:
+
+Create:
+
+25 -> NULL
+
+Step 2:
+
+Move temp to Position 2
+
+10 -> 20
+      ↑
+    temp
+
+Step 3:
+
+```java
+newNode.next = temp.next;
+```
+
+Result:
+
+25 -> 30 -> 40
+
+Step 4:
+
+```java
+temp.next = newNode;
+```
+
+Final List:
+
+10 -> 20 -> 25 -> 30 -> 40 -> NULL
+
+---
+
+## Time Complexity
+
+| Operation | Complexity |
+|-----------|------------|
+| Insert at Position | O(n) |
+
+Reason:
+
+Traversal is required to reach the insertion position.
+
+---
+
+## Space Complexity
+
+| Operation | Complexity |
+|-----------|------------|
+| Extra Space | O(1) |
+
+---
+
+## Key Points
+
+- Position uses **1-based indexing**.
+- If `position == 1`, insertion is the same as **Insert at Beginning**.
+- Stop traversal at **position - 1**.
+- Never move the `head`; always use a temporary pointer (`temp`).
+- The order of pointer updates is important:
+  1. `newNode.next = temp.next`
+  2. `temp.next = newNode`
+
+---
+
+## Common Mistakes
+
+### ❌ Wrong Order
+
+```java
+temp.next = newNode;
+newNode.next = temp.next;
+```
+
+This creates an incorrect link and loses the rest of the list.
+
+### ✅ Correct Order
+
+```java
+newNode.next = temp.next;
+temp.next = newNode;
+```
+
+---
+
+## Interview Questions
+
+1. Why do we stop at `position - 1`?
+2. Why is `position == 1` handled separately?
+3. Why do we use a temporary pointer instead of moving `head`?
+4. What happens if the position is greater than the length of the linked list?
+5. What is the time complexity of insertion at a position?
