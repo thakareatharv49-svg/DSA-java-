@@ -1,0 +1,146 @@
+# Day 06 - Delete from End (Singly Linked List)
+
+## Definition
+
+Deleting from the end means removing the last node of the linked list.
+
+Example:
+
+Before:
+
+10 -> 20 -> 30 -> 40 -> NULL
+
+After:
+
+10 -> 20 -> 30 -> NULL
+
+---
+
+## Algorithm
+
+1. Check if the linked list is empty.
+2. If there is only one node, return `null`.
+3. Create a temporary pointer (`temp`) and initialize it with `head`.
+4. Traverse until `temp` reaches the second-last node.
+5. Set `temp.next = null`.
+6. Return `head`.
+
+---
+
+## Syntax
+
+```java
+if (head == null) {
+    return null;
+}
+
+if (head.next == null) {
+    return null;
+}
+
+Node temp = head;
+
+while (temp.next.next != null) {
+    temp = temp.next;
+}
+
+temp.next = null;
+
+return head;
+```
+
+---
+
+## Dry Run
+
+Initial List:
+
+10 -> 20 -> 30 -> 40 -> NULL
+
+Step 1:
+
+Move `temp` to the second-last node.
+
+10 -> 20 -> 30 -> 40 -> NULL
+            ↑
+           temp
+
+Step 2:
+
+```java
+temp.next = null;
+```
+
+Final List:
+
+10 -> 20 -> 30 -> NULL
+
+The last node (`40`) becomes unreachable and is later removed by Java's Garbage Collector.
+
+---
+
+## Time Complexity
+
+| Operation | Complexity |
+|-----------|------------|
+| Delete from End | O(n) |
+
+Reason:
+
+Traversal is required to reach the second-last node.
+
+---
+
+## Space Complexity
+
+| Operation | Complexity |
+|-----------|------------|
+| Extra Space | O(1) |
+
+---
+
+## Key Points
+
+- Stop at the **second-last node**, not the last node.
+- Use `while (temp.next.next != null)`.
+- If the list has only one node, return `null`.
+- Java automatically removes the deleted node using Garbage Collection.
+- Never move the `head`; use a temporary pointer (`temp`).
+
+---
+
+## Common Mistakes
+
+### ❌ Wrong
+
+```java
+while (temp.next != null) {
+    temp = temp.next;
+}
+
+temp.next = null;
+```
+
+Reason:
+
+`temp` reaches the last node, so there is no previous node to disconnect it.
+
+### ✅ Correct
+
+```java
+while (temp.next.next != null) {
+    temp = temp.next;
+}
+
+temp.next = null;
+```
+
+---
+
+## Interview Questions
+
+1. Why do we stop at the second-last node?
+2. Why is `head.next == null` checked separately?
+3. What happens if we use `while (temp.next != null)`?
+4. Why is the time complexity O(n)?
+5. What happens to the deleted node in Java?
