@@ -1,0 +1,75 @@
+class Node {
+
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class LinkedListDeleteAtBeginning {
+
+    // Display Linked List
+    public static void display(Node head) {
+
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+
+        System.out.println("NULL");
+    }
+
+    // Delete from Beginning
+    public static Node deleteAtBeginning(Node head) {
+
+        if (head == null) {
+            return null;
+        }
+
+        head = head.next;
+
+        return head;
+    }
+
+    public static void main(String[] args) {
+
+        Node first = new Node(10);
+        Node second = new Node(20);
+        Node third = new Node(30);
+        Node fourth = new Node(40);
+
+        first.next = second;
+        second.next = third;
+        third.next = fourth;
+
+        Node head = first;
+
+        System.out.println("Original Linked List:");
+        display(head);
+
+        head = deleteAtBeginning(head);
+
+        System.out.println("\nAfter First Deletion:");
+        display(head);
+
+        head = deleteAtBeginning(head);
+
+        System.out.println("\nAfter Second Deletion:");
+        display(head);
+
+        head = deleteAtBeginning(head);
+
+        System.out.println("\nAfter Third Deletion:");
+        display(head);
+
+        head = deleteAtBeginning(head);
+
+        System.out.println("\nAfter Fourth Deletion:");
+        display(head);
+    }
+}
