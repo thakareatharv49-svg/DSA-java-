@@ -1,0 +1,156 @@
+# Day 07 - Delete at a Specific Position (Singly Linked List)
+
+## Definition
+
+Deleting at a specific position means removing the node present at the given position while maintaining the remaining links of the linked list.
+
+Example:
+
+Before:
+
+10 -> 20 -> 30 -> 40 -> 50 -> NULL
+
+Delete Position: 3
+
+After:
+
+10 -> 20 -> 40 -> 50 -> NULL
+
+---
+
+## Algorithm
+
+1. Check if the linked list is empty.
+2. If the position is 1, delete the first node.
+3. Create a temporary pointer (`temp`) starting from `head`.
+4. Traverse until the node just before the target position (`position - 1`).
+5. Skip the target node using:
+   ```java
+   temp.next = temp.next.next;
+   ```
+6. Return the updated `head`.
+
+---
+
+## Syntax
+
+```java
+if (head == null) {
+    return null;
+}
+
+if (position == 1) {
+    return head.next;
+}
+
+Node temp = head;
+
+for (int i = 1; i < position - 1; i++) {
+    temp = temp.next;
+}
+
+temp.next = temp.next.next;
+
+return head;
+```
+
+---
+
+## Dry Run
+
+Initial List:
+
+10 -> 20 -> 30 -> 40 -> 50 -> NULL
+
+Delete Position = 3
+
+Move `temp` to Position 2.
+
+10 -> 20 -> 30 -> 40 -> 50
+      ↑
+     temp
+
+Execute:
+
+```java
+temp.next = temp.next.next;
+```
+
+Result:
+
+10 -> 20 -> 40 -> 50 -> NULL
+
+The node containing `30` becomes unreachable and Java's Garbage Collector removes it automatically.
+
+---
+
+## Time Complexity
+
+| Operation | Complexity |
+|-----------|------------|
+| Delete at Position | O(n) |
+
+Reason:
+
+Traversal is required to reach the previous node.
+
+---
+
+## Space Complexity
+
+| Operation | Complexity |
+|-----------|------------|
+| Extra Space | O(1) |
+
+---
+
+## Key Points
+
+- Use **1-based indexing**.
+- Stop at **position - 1**.
+- Skip the node using:
+  ```java
+  temp.next = temp.next.next;
+  ```
+- If `position == 1`, it is the same as deleting from the beginning.
+- Java automatically removes unreachable nodes using Garbage Collection.
+
+---
+
+## Common Mistakes
+
+### ❌ Wrong
+
+```java
+temp = temp.next.next;
+```
+
+Reason:
+
+This only moves the temporary pointer and does not change the linked list.
+
+### ✅ Correct
+
+```java
+temp.next = temp.next.next;
+```
+
+Reason:
+
+The link is updated, so the target node is skipped.
+
+---
+
+## Interview Questions
+
+1. Why do we stop at `position - 1`?
+2. Why is Position 1 handled separately?
+3. What is the difference between `temp = temp.next.next` and `temp.next = temp.next.next`?
+4. What is the time complexity?
+5. What happens to the deleted node in Java?
+
+---
+
+## Status
+
+✅ Completed
