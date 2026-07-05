@@ -1,0 +1,86 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class Main {
+
+    // Display Linked List
+    public static void display(Node head) {
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+
+        System.out.println("NULL");
+    }
+
+    // Delete at Position (1-based indexing)
+    public static Node deleteAtPosition(Node head, int position) {
+
+        // Empty List
+        if (head == null) {
+            return null;
+        }
+
+        // Delete First Node
+        if (position == 1) {
+            return head.next;
+        }
+
+        Node temp = head;
+
+        // Move to (position - 1)
+        for (int i = 1; i < position - 1; i++) {
+            temp = temp.next;
+        }
+
+        // Delete the node
+        temp.next = temp.next.next;
+
+        return head;
+    }
+
+    public static void main(String[] args) {
+
+        // Create Nodes
+        Node first = new Node(10);
+        Node second = new Node(20);
+        Node third = new Node(30);
+        Node fourth = new Node(40);
+        Node fifth = new Node(50);
+
+        // Connect Nodes
+        first.next = second;
+        second.next = third;
+        third.next = fourth;
+        fourth.next = fifth;
+
+        Node head = first;
+
+        System.out.println("Original Linked List:");
+        display(head);
+
+        // Delete Position 3
+        head = deleteAtPosition(head, 3);
+        System.out.println("\nAfter Deleting Position 3:");
+        display(head);
+
+        // Delete Position 1
+        head = deleteAtPosition(head, 1);
+        System.out.println("\nAfter Deleting Position 1:");
+        display(head);
+
+        // Delete Position 2
+        head = deleteAtPosition(head, 2);
+        System.out.println("\nAfter Deleting Position 2:");
+        display(head);
+    }
+}
