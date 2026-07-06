@@ -1,0 +1,162 @@
+# Day 08 - Reverse a Singly Linked List
+
+## LeetCode Problem
+
+- **Problem:** Reverse Linked List
+- **Difficulty:** Easy
+- **Interview Frequency:** ⭐⭐⭐⭐⭐
+
+---
+
+## Definition
+
+Reversing a linked list means changing the direction of every pointer so that the last node becomes the first node.
+
+Example:
+
+Before:
+
+10 -> 20 -> 30 -> 40 -> 50 -> NULL
+
+After:
+
+50 -> 40 -> 30 -> 20 -> 10 -> NULL
+
+---
+
+## Approach
+
+We use **three pointers**:
+
+- `prev` → Previous node
+- `current` → Current node
+- `next` → Stores the next node before changing links
+
+This prevents losing the remaining part of the linked list.
+
+---
+
+## Algorithm
+
+1. Initialize:
+   ```java
+   Node prev = null;
+   Node current = head;
+   Node next = null;
+   ```
+2. Repeat while `current != null`:
+   - Save next node.
+   - Reverse current node's link.
+   - Move `prev` one step forward.
+   - Move `current` one step forward.
+3. Return `prev` as the new head.
+
+---
+
+## Core Logic
+
+```java
+next = current.next;
+current.next = prev;
+prev = current;
+current = next;
+```
+
+**Never change the order of these four lines.**
+
+---
+
+## Dry Run
+
+Initial List:
+
+10 -> 20 -> 30 -> NULL
+
+Iteration 1:
+
+- `next = 20`
+- `10.next = null`
+- `prev = 10`
+- `current = 20`
+
+Iteration 2:
+
+- `next = 30`
+- `20.next = 10`
+- `prev = 20`
+- `current = 30`
+
+Iteration 3:
+
+- `next = null`
+- `30.next = 20`
+- `prev = 30`
+- `current = null`
+
+Final List:
+
+30 -> 20 -> 10 -> NULL
+
+---
+
+## Time Complexity
+
+| Operation | Complexity |
+|-----------|------------|
+| Reverse Linked List | O(n) |
+
+Each node is visited exactly once.
+
+---
+
+## Space Complexity
+
+| Operation | Complexity |
+|-----------|------------|
+| Extra Space | O(1) |
+
+Only three pointers are used.
+
+---
+
+## Key Points
+
+- Use three pointers: `prev`, `current`, `next`.
+- Always save the next node before changing links.
+- Reverse one link at a time.
+- Return `prev`, not `head`.
+- This is an in-place algorithm.
+
+---
+
+## Common Mistakes
+
+### ❌ Wrong
+
+```java
+current.next = prev;
+next = current.next;
+```
+
+Reason:
+
+The original next node is lost.
+
+### ✅ Correct
+
+```java
+next = current.next;
+current.next = prev;
+```
+
+Always save the next node first.
+
+---
+
+## Interview Questions
+
+1. Why do we need three pointers?
+2. Why do we return `prev` instead of `head`?
+3. What happens if we reverse the link before saving the next node?
+4. What are the time and space complexities?
+5. Can this problem also be solved using recursion?
