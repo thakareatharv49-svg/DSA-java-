@@ -1,0 +1,74 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class Main {
+
+    // Display Linked List
+    public static void display(Node head) {
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+
+        System.out.println("NULL");
+    }
+
+    // Reverse Linked List
+    public static Node reverse(Node head) {
+
+        Node prev = null;
+        Node current = head;
+        Node next = null;
+
+        while (current != null) {
+
+            // Store next node
+            next = current.next;
+
+            // Reverse the link
+            current.next = prev;
+
+            // Move prev and current one step ahead
+            prev = current;
+            current = next;
+        }
+
+        return prev;
+    }
+
+    public static void main(String[] args) {
+
+        // Create Nodes
+        Node first = new Node(10);
+        Node second = new Node(20);
+        Node third = new Node(30);
+        Node fourth = new Node(40);
+        Node fifth = new Node(50);
+
+        // Connect Nodes
+        first.next = second;
+        second.next = third;
+        third.next = fourth;
+        fourth.next = fifth;
+
+        Node head = first;
+
+        System.out.println("Original Linked List:");
+        display(head);
+
+        // Reverse the linked list
+        head = reverse(head);
+
+        System.out.println("\nReversed Linked List:");
+        display(head);
+    }
+}
